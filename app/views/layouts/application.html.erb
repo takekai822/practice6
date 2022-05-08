@@ -12,12 +12,60 @@
 
   <body>
     <header>
+      <nav>
+        <ul>
+          <% if user_signed_in? %>
+          <!-- 後で記述する-->
+            <li>
+              <%= link_to "" do %>
+                Home
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "" do %>
+                Users
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "" do %>
+                Books
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                Log out
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to root_path do %>
+                Home
+              <% end %>
+            </li>
+            <li>
+              <%= link_to home_about_path do %>
+                About
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                Sign up
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path do %>
+                Log in
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
     </header>
     <main>
       <%= yield %>
     </main>
     <footer>
-      
+
     </footer>
   </body>
 </html>
