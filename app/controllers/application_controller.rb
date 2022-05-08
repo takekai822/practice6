@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top, :about]
 
   def after_sign_in_path_for(resource)
-    home_about_path
+    user_path(resource)
   end
 
 
