@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :books, except: [:new] do
     resource :favorites, only: [:create, :destroy]
+    resources :book_comments, only: [:create, :destroy]
   end
 
   resources :users, except: [:new, :destroy]
