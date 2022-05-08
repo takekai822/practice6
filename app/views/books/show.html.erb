@@ -8,7 +8,7 @@
       <h2>Book detail</h2>
       <table class="table">
         <tbody>
-          <tr>
+          <tr id="book_<%= @book.id %>">
             <td>
               <%= link_to user_path(@book.user) do %>
                 <%= image_tag @book.user.get_profile_image, size: "80x80" %><br>
@@ -21,7 +21,10 @@
               <% end %>
             </td>
             <td>
-              <%= @book.body %>
+              <%= @book.body.truncate(13) %>
+            </td>
+            <td class="favorite">
+              <%= render "favorites/btn", book: @book %>
             </td>
             <% if @book.user == current_user %>
               <td>
