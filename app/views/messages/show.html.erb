@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h1 id="room" date-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %>さんとのチャット</h2>
+      <div class="message" style="width: 400px;">
+        <div align="center" class="border-bottom border-top pt-2 pb-2"><strong><%= @user.name %> & <%= current_user.name %></strong></div>
+        <% @messages.each do |message| %>
+          <% if message.user_id == current_user.id %>
+            <p style="text-align: right;"><%= message.message %></p>
+          <% else %>
+            <p style="text-align: left;"><%= message.message %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <%= form_with model: @message, data: {remote: true} do |f| %>
+        <%= f.text_field :message %>
+        <%= f.hidden_field :room_id %>
+      <% end %>
+    </div>
+  </div>
+</div>
