@@ -12,6 +12,10 @@
           <%= f.label :body %>
           <%= f.text_area :body, class: "form-control book_body" %>
         </div>
+        <div class="form-group">
+          <%= f.label :category %>
+          <%= f.text_field :name, value: @tag_list, class: "form-control", placeholder: ",で区切ると複数タグ登録できます" %>
+        </div>
         <div class="form-group" id="star-rate-<%= @book.id %>"></div>
         <script>
           $(document).on('turbolinks:load', function(){
