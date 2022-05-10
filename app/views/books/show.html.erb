@@ -27,16 +27,26 @@
               <%= render "favorites/btn", book: @book %>
             </td>
             <td class="comment-count">
-              コメント数：<%= @book.book_comments.count %>
+              コメント数：<%= @book.book_comments.count %><br>閲覧数：<%= @book.view_counts.count %>
             </td>
-            <td>
-              閲覧数：<%= @book.view_counts.count %>
-            </td>
+            <td id="star-rate-<%= @book.id %>"></td>
+            <script>
+              $(document).on('turbolinks:load', function(){
+                $('#star-rate-<%= @book.id %>').empty();
+                $('#star-rate-<%= @book.id %>').raty({
+                  size : 36,
+                  starOff : '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf : '<%= asset_path('star-half.png') %>',
+                  half : true,
+                  readOnly : true,
+                  score : <%= @book.rate %>,
+                });
+              })
+            </script>
             <% if @book.user == current_user %>
               <td>
-                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %>
-              </td>
-              <td>
+                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id} mb-1" %><br>
                 <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy_book_#{@book.id}", "data-confirm" => "本当に消しますか？" %>
               </td>
             <% end %>
