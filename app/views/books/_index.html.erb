@@ -4,6 +4,7 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th>Category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,13 @@
         </td>
         <td>
           <%= book.body.truncate(13) %>
+        </td>
+        <td>
+          <% book.tags.each do |tag| %>
+            <%= link_to search_tag_path(tag_id: tag.id) do %>
+              <%= tag.name %>
+            <% end %>
+          <% end %>
         </td>
         <td class="favorite">
           <%= render "favorites/btn", book: book %>

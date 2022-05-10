@@ -74,6 +74,13 @@
                 </li>
               <% end %>
             </ul>
+            <% if user_signed_in? %>
+              <%= form_with url: search_path, method: :get, local: true do |f| %>
+                <%= f.text_field :word, placeholder: "タグ検索" %>
+                <%= f.hidden_field :range, :value => "Tag"  %>
+                <%= f.submit '検索' %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </nav>

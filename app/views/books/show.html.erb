@@ -25,6 +25,13 @@
             <td>
               <%= @book.body.truncate(13) %>
             </td>
+            <td>
+              <% @book_tags.each do |tag| %>
+                <%= link_to search_tag_path(tag_id: tag.id) do %>
+                  <%= tag.name %>
+                <% end %>
+              <% end %>
+            </td>
             <td class="favorite">
               <%= render "favorites/btn", book: @book %>
             </td>
